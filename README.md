@@ -19,6 +19,13 @@ A B2B framework that watches *how* users move through software (never *what* the
 
 ---
 
+## Try it live
+
+| App | Link |
+|---|---|
+| **Live Demo App**: the dashboard that morphs, with the Gemini, ElevenLabs and Solana copilot | https://morph-ui-weld.vercel.app |
+| **Vendor Portal**: the Gemini-powered Developing Agent | https://morph-ui-h3dz.vercel.app |
+
 ## The pitch
 
 Most "smart" UIs react to clicks. This one reacts to *cognitive load* — measured from timing, dwell, scroll reversals, and error rates, never from content. Three pieces work together to make that real instead of theoretical:
