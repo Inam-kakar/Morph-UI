@@ -4,7 +4,6 @@
 
 A B2B framework that watches *how* users move through software (never *what* they type or read) and reshapes the interface in real time: stripping away noise when they're focused, surfacing help when they're stuck, and simplifying everything when they're frustrated. A human-controlled lock switch always wins over the algorithm.
 
-> **Repository history.** Morph UI was previously developed as [4bakhti/Dynamic-UI-Morphing](https://github.com/4bakhti/Dynamic-UI-Morphing), which holds the project's full development history. This repository is a clean, condensed import: the commits group the code into logical milestones and do not reflect the original development timeline.
 
 <p>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white">
