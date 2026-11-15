@@ -1,0 +1,42 @@
+version: 2
+updates:
+  # Behaviour Agent (repository root)
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      root-dependencies:
+        patterns: ["*"]
+
+  # Live Demo App. Majors (Next 16, Tailwind 4, ...) are deliberate migration
+  # projects, not bot merges — the CI `npm audit` gate still fails loudly if a
+  # security fix ever requires one, so nothing slips silently.
+  - package-ecosystem: npm
+    directory: "/demo-app"
+    schedule:
+      interval: weekly
+    groups:
+      demo-app-dependencies:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Vendor Portal (Developing Agent). Same major-version policy as demo-app.
+  - package-ecosystem: npm
+    directory: "/vendor-portal"
+    schedule:
+      interval: weekly
+    groups:
+      vendor-portal-dependencies:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Keep the CI workflow's actions current too
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly

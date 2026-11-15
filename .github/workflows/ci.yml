@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  behaviour-agent:
+    name: Behaviour Agent · tests + typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm run typecheck
+      - run: npm test
+
+  demo-app:
+    name: Demo App · typecheck + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: demo-app/package-lock.json
+      # demo-app imports ../src/behaviour, whose zustand dependency resolves
+      # from the repository root, so both installs are required.
+      - run: npm ci
+      - run: npm ci
+        working-directory: demo-app
+      - run: npm audit --audit-level=high
+        working-directory: demo-app
+      - run: npx tsc --noEmit
+        working-directory: demo-app
+      # Typechecking alone green-lit PRs that didn't build (e.g. Tailwind 4
+      # config breakage) — the production build is the real gate.
+      - run: npm run build
+        working-directory: demo-app
+
+  vendor-portal:
+    name: Vendor Portal · typecheck + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: vendor-portal/package-lock.json
+      - run: npm ci
+        working-directory: vendor-portal
+      - run: npm audit --audit-level=high
+        working-directory: vendor-portal
+      - run: npm test
+        working-directory: vendor-portal
+      - run: npx tsc --noEmit
+        working-directory: vendor-portal
+      - run: npm run build
+        working-directory: vendor-portal
