@@ -21,7 +21,9 @@ A B2B framework that watches *how* users move through software (never *what* the
 
 ## Watch the film (1:20)
 
-[![Morph UI: watch the 1:20 film](docs/media/morph-ui-film-poster.jpg)](docs/media/morph-ui-film.mp4)
+[![Morph UI: watch the 1:20 film](docs/media/morph-ui-film-poster.jpg)](https://cdn.jsdelivr.net/gh/Inam-kakar/Morph-UI@main/docs/media/morph-ui-film.mp4)
+
+<sub>Click to play in your browser · [download the MP4](docs/media/morph-ui-film.mp4)</sub>
 
 ## Try it live
 
