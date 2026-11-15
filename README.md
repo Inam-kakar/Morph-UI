@@ -149,27 +149,15 @@ npm run dev   # http://localhost:3000
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/asfandyar-prog">
-        <img src="https://github.com/asfandyar-prog.png?size=120" width="100" alt="Asfand Yar" /><br />
-        <strong>Asfand Yar</strong>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/yigitcemakbas">
-        <img src="https://github.com/yigitcemakbas.png?size=120" width="100" alt="Yigit Akbas" /><br />
-        <strong>Yigit Akbas</strong>
+      <a href="https://github.com/Adnanessoufi">
+        <img src="https://avatars.githubusercontent.com/u/152924898?v=4" width="100" alt="Adnane Essoufi" /><br />
+        <strong>Adnane Essoufi</strong>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/Inam-kakar">
         <img src="https://github.com/Inam-kakar.png?size=120" width="100" alt="Inam Ullah" /><br />
         <strong>Inam Ullah</strong>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/justkuchkorov">
-        <img src="https://github.com/justkuchkorov.png?size=120" width="100" alt="Abdurakhmon Kuchkorov" /><br />
-        <strong>Abdurakhmon Kuchkorov</strong>
       </a>
     </td>
   </tr>
