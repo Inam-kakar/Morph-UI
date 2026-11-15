@@ -24,7 +24,7 @@ A B2B framework that watches *how* users move through software (never *what* the
 | App | Link |
 |---|---|
 | **Live Demo App**: the dashboard that morphs, with the Gemini, ElevenLabs and Solana copilot | https://morph-ui-weld.vercel.app |
-| **Vendor Portal**: the Gemini-powered Developing Agent | https://morph-ui-h3dz.vercel.app |
+| **Vendor Portal**: the Gemini-powered Developing Agent | https://dynamic-ui-vendor-portal-q0hfwi2ii-4bakhtis-projects.vercel.app |
 
 ## The pitch
 
