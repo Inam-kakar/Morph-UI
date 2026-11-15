@@ -19,30 +19,16 @@ A B2B framework that watches *how* users move through software (never *what* the
 
 ---
 
+## Watch the film (1:20)
+
+[![Morph UI: watch the 1:20 film](docs/media/morph-ui-film-poster.jpg)](docs/media/morph-ui-film.mp4)
+
 ## Try it live
 
 | App | Link |
 |---|---|
 | **Live Demo App**: the dashboard that morphs, with the Gemini, ElevenLabs and Solana copilot | https://morph-ui-weld.vercel.app |
 | **Vendor Portal**: the Gemini-powered Developing Agent | https://dynamic-ui-vendor-portal-q0hfwi2ii-4bakhtis-projects.vercel.app |
-
-## The pitch
-
-Most "smart" UIs react to clicks. This one reacts to *cognitive load* — measured from timing, dwell, scroll reversals, and error rates, never from content. Three pieces work together to make that real instead of theoretical:
-
-```
-1 · DESCRIBE                    2 · WATCH & SCORE               3 · MORPH                   
-+--------------------------+    +--------------------------+    +--------------------------+
-| Vendor Portal            |    | Behaviour Agent          |    | Live Demo App            |
-| vendor-portal/           |--> | src/behaviour/           |--> | demo-app/                |
-|                          |    |                          |    |                          |
-| An LLM turns a           |    | Numeric-only telemetry   |    | Sidebar, Ribbon, Chart,  |
-| plain-text component     |    | to per-signal z-scores   |    | Editor, Notifications    |
-| list into layout JSON    |    | to composite score to    |    | all read from one mode   |
-| for Focus / Exploration  |    | state machine, guarded   |    | in Zustand and morph     |
-| / Clarity modes          |    | by cooldown + hysteresis |    | live with Framer Motion  |
-+--------------------------+    +--------------------------+    +--------------------------+
-```
 
 ## The four modes
 
@@ -78,21 +64,13 @@ A Next.js onboarding surface with two agent modes. **Layout JSON**: a vendor pas
 
 The "Enterprise Data Analytics Dashboard" judges actually see: a single-page Next.js app with a sidebar, a metrics ribbon, a data chart, a report editor, and a notification feed, all driven by one `currentMode` value in a Zustand store. Framer Motion animates every panel hiding, expanding, or reflowing as the mode changes. The layout rules for each mode live in one file — [`lib/layoutConfig.ts`](demo-app/lib/layoutConfig.ts) — mirroring the exact contract the Developing Agent emits, so the two apps can never disagree about what a mode looks like. The header's **Import layout** panel closes the loop: paste the JSON the Vendor Portal generated and the dashboard morphs using that vendor's config instead of the built-in one. The "Simulate Signal" pills stand in for the real Behaviour Agent during a demo; the **Lock Interface** switch next to them proves the human-in-the-loop safeguard live, while the header meter shows the real engine's composite score. The **Copilot** drawer hosts the Gemini, ElevenLabs and Solana features described above.
 
-## Sponsor integrations (UniHack 8 · MLH prizes)
+## Sponsor tech
 
-The live demo ships an **Adaptive Copilot** (header → ✨ Copilot) where each sponsor technology does a real job in the morphing loop, not a bolt-on demo. Every integration degrades to a clearly labelled offline fallback, so the stage demo never breaks without keys.
+- **Gemini**: designs each company's layouts, and powers the copilot (tips when you're stuck, report outlines, "why did my screen change?").
+- **ElevenLabs**: says a short line whenever the layout changes, and reads reports aloud.
+- **Solana**: anchors a fingerprint of every AI decision on-chain, a tamper-evident log with no personal data.
 
-| Prize | What it does in the product | Where |
-|---|---|---|
-| **Best Use of Gemini API** | Gemini is the brain at both ends. In the **Vendor Portal** it turns a plain-text component list into the Zod-validated layout JSON and rewrites vendor code to be mode-aware (`streamObject` / `streamText` via `@ai-sdk/google`). In the **Live Demo** it writes the Exploration-mode nudge when a user is stuck, drafts a data-grounded report outline in one click ("Draft with Gemini"), and explains *why* the screen just changed. It only ever receives numbers (mode, composite score, signal counts) and the dashboard's own aggregate data, never anything the user typed. | [`vendor-portal/lib/model.ts`](vendor-portal/lib/model.ts), [`demo-app/app/api/insight/route.ts`](demo-app/app/api/insight/route.ts) |
-| **Best Use of ElevenLabs** | A UI that rearranges itself can feel like a glitch. ElevenLabs gives the morph a calm voice: opt-in spoken announcements on every mode change ("Things seemed a little hectic, so I've simplified the screen…"). It also reads the report draft aloud in one click, an accessibility win for fatigued users in Clarity mode. | [`demo-app/app/api/voice/route.ts`](demo-app/app/api/voice/route.ts), [`demo-app/lib/copilot.ts`](demo-app/lib/copilot.ts) |
-| **Best Use of Solana** | An **AI Transparency Ledger**. Every algorithmic morph, every human override and every signal blocked by the Lock switch is logged. One click anchors a SHA-256 fingerprint of that log on Solana as an SPL Memo, giving tamper-evident proof of what the AI did to the interface (think EU AI Act transparency), with zero personal data on-chain. The browser re-hashes the log to prove it matches, and "Read memo back" fetches the memo from chain. The transaction is built, Ed25519-signed and sent over raw JSON-RPC, with no SDK dependency. | [`demo-app/lib/server/solana.ts`](demo-app/lib/server/solana.ts), [`demo-app/app/api/ledger/route.ts`](demo-app/app/api/ledger/route.ts) |
-
-```bash
-cd demo-app
-cp .env.local.example .env.local          # GEMINI_API_KEY, ELEVENLABS_API_KEY, SOLANA_SECRET_KEY
-node scripts/solana-keygen.mjs --airdrop  # throwaway devnet wallet for the ledger
-```
+Keys go in `demo-app/.env.local` (see `.env.local.example`). Without them, each feature runs on a labelled fallback.
 
 ## Getting started
 
